@@ -21,7 +21,6 @@ public class JwtUtil {
     private final long EXPIRATION_TIME;
 
     public JwtUtil(@Value("${app.jwtSecret}") String secret, @Value("${app.jwtExpirationMs}") long expirationTime) {
-        // Base64 kodlu secret'ı decode ederek anahtarı oluşturuyoruz
         this.SIGNING_KEY = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
         this.EXPIRATION_TIME = expirationTime;
     }
@@ -31,8 +30,7 @@ public class JwtUtil {
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                // BURAYI DEĞİŞTİRECEKSİNİZ: HS512 yerine HS256 kullanacağız
-                .signWith(SIGNING_KEY, SignatureAlgorithm.HS256) // **DEĞİŞTİRİLEN KISIM BURASI**
+                .signWith(SIGNING_KEY, SignatureAlgorithm.HS256) 
                 .compact();
     }
 

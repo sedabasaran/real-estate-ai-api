@@ -1,6 +1,5 @@
 package com.realestate.finder.dto.response;
 
-import com.realestate.finder.entity.CategoryType;
 
 public class CategoryResponseDTO {
 

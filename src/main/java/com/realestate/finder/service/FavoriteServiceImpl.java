@@ -20,50 +20,48 @@ import java.util.stream.Collectors;
 public class FavoriteServiceImpl implements FavoriteService {
 
 	private final FavoriteRepository favoriteRepository;
-    private final UserRepository userRepository;
-    private final PropertyRepository propertyRepository;
-    private final FavoriteMapper favoriteMapper;
+	private final UserRepository userRepository;
+	private final PropertyRepository propertyRepository;
+	private final FavoriteMapper favoriteMapper;
 
-    public FavoriteServiceImpl(FavoriteRepository favoriteRepository, UserRepository userRepository,
-                               PropertyRepository propertyRepository, FavoriteMapper favoriteMapper) {
-        this.favoriteRepository = favoriteRepository;
-        this.userRepository = userRepository;
-        this.propertyRepository = propertyRepository;
-        this.favoriteMapper = favoriteMapper;
-    }
+	public FavoriteServiceImpl(FavoriteRepository favoriteRepository, UserRepository userRepository,
+			PropertyRepository propertyRepository, FavoriteMapper favoriteMapper) {
+		this.favoriteRepository = favoriteRepository;
+		this.userRepository = userRepository;
+		this.propertyRepository = propertyRepository;
+		this.favoriteMapper = favoriteMapper;
+	}
 
-    @Override
-    public FavoriteResponseDTO addFavorite(Long userId, Long propertyId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+	@Override
+	public FavoriteResponseDTO addFavorite(Long userId, Long propertyId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new PropertyNotFoundException("Property not found with id: " + propertyId));
+		Property property = propertyRepository.findById(propertyId)
+				.orElseThrow(() -> new PropertyNotFoundException("Property not found with id: " + propertyId));
 
-        Favorite favorite = new Favorite();
-        favorite.setUser(user);
-        favorite.setProperty(property);
+		Favorite favorite = new Favorite();
+		favorite.setUser(user);
+		favorite.setProperty(property);
 
-        Favorite savedFavorite = favoriteRepository.save(favorite);
-        return favoriteMapper.toResponseDTO(savedFavorite);
-    }
+		Favorite savedFavorite = favoriteRepository.save(favorite);
+		return favoriteMapper.toResponseDTO(savedFavorite);
+	}
 
-    @Override
-    public List<FavoriteResponseDTO> getFavoritesByUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+	@Override
+	public List<FavoriteResponseDTO> getFavoritesByUser(Long userId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
-        List<Favorite> favorites = favoriteRepository.findByUser(user);
+		List<Favorite> favorites = favoriteRepository.findByUser(user);
 
-        return favorites.stream()
-                .map(favoriteMapper::toResponseDTO)
-                .collect(Collectors.toList());
-    }
+		return favorites.stream().map(favoriteMapper::toResponseDTO).collect(Collectors.toList());
+	}
 
-    @Override
-    public void deleteFavorite(Long id) {
-        Favorite favorite = favoriteRepository.findById(id)
-                .orElseThrow(() -> new FavoriteNotFoundException("Favorite not found with id: " + id));
-        favoriteRepository.delete(favorite);
-    }
+	@Override
+	public void deleteFavorite(Long id) {
+		Favorite favorite = favoriteRepository.findById(id)
+				.orElseThrow(() -> new FavoriteNotFoundException("Favorite not found with id: " + id));
+		favoriteRepository.delete(favorite);
+	}
 }

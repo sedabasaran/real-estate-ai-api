@@ -7,6 +7,5 @@ import com.realestate.finder.entity.Property;
 
 @Repository
 public interface PropertyRepository extends JpaRepository<Property, Long> {
-	
 
 }

@@ -15,83 +15,66 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "favorities")
 public class Favorite {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id") // Foreign key sütun adı
-    private User user;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "user_id")
+	private User user;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "property_id") // Foreign key sütun adı
-    private Property property;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "property_id")
+	private Property property;
 
-    @Column(nullable = false, updatable = false) // 'updatable = false' ekledik
-    private LocalDateTime createdAt;
+	@Column(nullable = false, updatable = false)
+	private LocalDateTime createdAt;
 
-    public Favorite() {
-    }
+	public Favorite() {
+	}
 
-    // Bu constructor'ı genellikle kullanmana gerek kalmaz çünkü createdAt otomatik ayarlanır
-    // public Favorite(User user, Property property, LocalDateTime createdAt) {
-    //     this.user = user;
-    //     this.property = property;
-    //     this.createdAt = createdAt;
-    // }
+	public Favorite(User user, Property property) {
+		this.user = user;
+		this.property = property;
 
-    // Yeni bir favori oluştururken sadece user ve property alanlarını kullanacağımız constructor
-    public Favorite(User user, Property property) {
-        this.user = user;
-        this.property = property;
-        // createdAt alanı @PrePersist ile otomatik doldurulacak
-    }
+	}
 
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+	}
 
-    // --- ÖNEMLİ DEĞİŞİKLİK BURADA BAŞLIYOR ---
+	public Long getId() {
+		return id;
+	}
 
-    // Veritabanına kaydedilmeden hemen önce createdAt alanını otomatik olarak doldurur
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
+	public User getUser() {
+		return user;
+	}
 
-    // --- ÖNEMLİ DEĞİŞİKLİK BURADA BİTİYOR ---
+	public Property getProperty() {
+		return property;
+	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public Property getProperty() {
-        return property;
-    }
+	public void setProperty(Property property) {
+		this.property = property;
+	}
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setProperty(Property property) {
-        this.property = property;
-    }
-
-    // createdAt alanı otomatik doldurulduğu için bu setter'a genellikle ihtiyaç duyulmaz.
-    // Ancak yine de bırakılabilir, elle ayarlamak istersen diye.
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 
 }

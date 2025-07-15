@@ -58,11 +58,10 @@ public class Property {
 	@Column(nullable = false)
 	@NotNull
 	private LocalDateTime createdAt;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private ListingType listingType;
-
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
@@ -212,7 +211,5 @@ public class Property {
 	public void setListingType(ListingType listingType) {
 		this.listingType = listingType;
 	}
-	
-	
 
 }

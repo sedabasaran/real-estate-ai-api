@@ -28,51 +28,50 @@ import jakarta.validation.Valid;
 public class PropertyController {
 
 	private final PropertyService propertyService;
-    private final JwtUtil jwtUtil;
-    private final UserService userService;
+	private final JwtUtil jwtUtil;
+	private final UserService userService;
 
-    public PropertyController(PropertyService propertyService, JwtUtil jwtUtil, UserService userService) {
-        this.propertyService = propertyService;
-        this.jwtUtil = jwtUtil;
-        this.userService = userService;
-    }
+	public PropertyController(PropertyService propertyService, JwtUtil jwtUtil, UserService userService) {
+		this.propertyService = propertyService;
+		this.jwtUtil = jwtUtil;
+		this.userService = userService;
+	}
 
-    @PostMapping
-    public ResponseEntity<PropertyResponseDTO> createProperty(
-            @RequestBody PropertyRequestDTO request,
-            @RequestHeader("Authorization") String authHeader) {
+	@PostMapping
+	public ResponseEntity<PropertyResponseDTO> createProperty(@RequestBody PropertyRequestDTO request,
+			@RequestHeader("Authorization") String authHeader) {
 
-        String token = authHeader.replace("Bearer ", "");
-        String email = jwtUtil.extractEmail(token); // ✅
+		String token = authHeader.replace("Bearer ", "");
+		String email = jwtUtil.extractEmail(token);
 
-        User user = userService.findUserEntityByEmail(email);
+		User user = userService.findUserEntityByEmail(email);
 
-        PropertyResponseDTO response = propertyService.createProperty(request, user);
-        return ResponseEntity.ok(response);
-    }
+		PropertyResponseDTO response = propertyService.createProperty(request, user);
+		return ResponseEntity.ok(response);
+	}
 
-    @GetMapping
-    public ResponseEntity<List<PropertyResponseDTO>> getAllProperties() {
-        List<PropertyResponseDTO> properties = propertyService.getAllProperties();
-        return ResponseEntity.ok(properties);
-    }
+	@GetMapping
+	public ResponseEntity<List<PropertyResponseDTO>> getAllProperties() {
+		List<PropertyResponseDTO> properties = propertyService.getAllProperties();
+		return ResponseEntity.ok(properties);
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PropertyResponseDTO> getPropertyById(@PathVariable Long id) {
-        PropertyResponseDTO property = propertyService.getPropertyById(id);
-        return ResponseEntity.ok(property);
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<PropertyResponseDTO> getPropertyById(@PathVariable Long id) {
+		PropertyResponseDTO property = propertyService.getPropertyById(id);
+		return ResponseEntity.ok(property);
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PropertyResponseDTO> updateProperty(@PathVariable Long id,
-                                                              @Valid @RequestBody PropertyRequestDTO requestDTO) {
-        PropertyResponseDTO updatedProperty = propertyService.updateProperty(id, requestDTO);
-        return ResponseEntity.ok(updatedProperty);
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<PropertyResponseDTO> updateProperty(@PathVariable Long id,
+			@Valid @RequestBody PropertyRequestDTO requestDTO) {
+		PropertyResponseDTO updatedProperty = propertyService.updateProperty(id, requestDTO);
+		return ResponseEntity.ok(updatedProperty);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProperty(@PathVariable Long id) {
-        propertyService.deleteProperty(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteProperty(@PathVariable Long id) {
+		propertyService.deleteProperty(id);
+		return ResponseEntity.noContent().build();
+	}
 }

@@ -17,18 +17,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "categories")
 public class Category {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
-    private CategoryType name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Property> properties = new ArrayList<>();
-    
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, unique = true)
+	private CategoryType name;
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	private List<Property> properties = new ArrayList<>();
 
 	public Category() {
 		super();
@@ -64,7 +63,5 @@ public class Category {
 	public void setProperties(List<Property> properties) {
 		this.properties = properties;
 	}
-    
-    
 
 }

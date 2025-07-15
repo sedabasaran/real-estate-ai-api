@@ -8,14 +8,14 @@ import com.realestate.finder.entity.User;
 
 public interface PropertyService {
 
-	   PropertyResponseDTO createProperty(PropertyRequestDTO request, User user);
+	PropertyResponseDTO createProperty(PropertyRequestDTO request, User user);
 
-	    List<PropertyResponseDTO> getAllProperties();
+	List<PropertyResponseDTO> getAllProperties();
 
-	    PropertyResponseDTO getPropertyById(Long id);
+	PropertyResponseDTO getPropertyById(Long id);
 
-	    PropertyResponseDTO updateProperty(Long id, PropertyRequestDTO propertyRequestDTO);
+	PropertyResponseDTO updateProperty(Long id, PropertyRequestDTO propertyRequestDTO);
 
-	    void deleteProperty(Long id);
+	void deleteProperty(Long id);
 
 }

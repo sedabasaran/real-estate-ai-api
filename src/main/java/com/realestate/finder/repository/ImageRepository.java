@@ -9,7 +9,7 @@ import com.realestate.finder.entity.Image;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long> {
-	
+
 	List<Image> findByPropertyId(Long propertyId);
-	
+
 }

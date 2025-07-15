@@ -31,10 +31,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Property> properties;
-	
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Favorite> favorites = new ArrayList<>();
-
 
 	public User() {
 	}
@@ -97,6 +96,5 @@ public class User {
 	public void setFavorites(List<Favorite> favorites) {
 		this.favorites = favorites;
 	}
-	
 
 }

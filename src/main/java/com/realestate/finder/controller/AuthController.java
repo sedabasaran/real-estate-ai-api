@@ -16,33 +16,31 @@ import com.realestate.finder.service.UserService;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-	
+
 	private final UserService userService;
-    private final JwtUtil jwtUtil;
+	private final JwtUtil jwtUtil;
 
-    public AuthController(UserService userService, JwtUtil jwtUtil) {
-        this.userService = userService;
-        this.jwtUtil = jwtUtil;
-    }
+	public AuthController(UserService userService, JwtUtil jwtUtil) {
+		this.userService = userService;
+		this.jwtUtil = jwtUtil;
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDTO loginRequest) {
-        User user = userService.findUserEntityByEmail(loginRequest.getEmail());
+	@PostMapping("/login")
+	public ResponseEntity<String> login(@RequestBody LoginRequestDTO loginRequest) {
+		User user = userService.findUserEntityByEmail(loginRequest.getEmail());
 
-        if (user == null || !user.getPassword().equals(loginRequest.getPassword())) {
-            return ResponseEntity.status(401).body("Invalid email or password");
-        }
+		if (user == null || !user.getPassword().equals(loginRequest.getPassword())) {
+			return ResponseEntity.status(401).body("Invalid email or password");
+		}
 
-        String token = jwtUtil.generateToken(user.getEmail());
-        return ResponseEntity.ok(token);
-    }
+		String token = jwtUtil.generateToken(user.getEmail());
+		return ResponseEntity.ok(token);
+	}
 
-    @PostMapping("/register")
-    public ResponseEntity<UserResponseDTO> register(@RequestBody UserRequestDTO userRequestDTO) {
-        UserResponseDTO newUser = userService.createUser(userRequestDTO);
-        return ResponseEntity.ok(newUser);
-    }
+	@PostMapping("/register")
+	public ResponseEntity<UserResponseDTO> register(@RequestBody UserRequestDTO userRequestDTO) {
+		UserResponseDTO newUser = userService.createUser(userRequestDTO);
+		return ResponseEntity.ok(newUser);
+	}
 
-
-    
 }

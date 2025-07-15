@@ -11,15 +11,15 @@ import com.realestate.finder.security.JwtUtil;
 @RequestMapping("/api/test")
 public class TestController {
 
-    private final JwtUtil jwtUtil;
+	private final JwtUtil jwtUtil;
 
-    public TestController(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
-    }
+	public TestController(JwtUtil jwtUtil) {
+		this.jwtUtil = jwtUtil;
+	}
 
-    @GetMapping("/generate-token")
-    public ResponseEntity<String> generateToken() {
-        String token = jwtUtil.generateToken("testuser@example.com");
-        return ResponseEntity.ok(token);
-    }
+	@GetMapping("/generate-token")
+	public ResponseEntity<String> generateToken() {
+		String token = jwtUtil.generateToken("testuser@example.com");
+		return ResponseEntity.ok(token);
+	}
 }

@@ -11,6 +11,6 @@ import com.realestate.finder.entity.User;
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
-    List<Favorite> findByUser(User user);
+	List<Favorite> findByUser(User user);
 
 }

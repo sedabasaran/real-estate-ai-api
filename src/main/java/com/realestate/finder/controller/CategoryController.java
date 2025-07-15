@@ -22,42 +22,42 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
-	
+
 	private final CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
+	public CategoryController(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 
-    @PostMapping
-    public ResponseEntity<CategoryResponseDTO> createCategory(@Valid @RequestBody CategoryRequestDTO requestDTO) {
-        CategoryResponseDTO responseDTO = categoryService.createCategory(requestDTO);
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity<CategoryResponseDTO> createCategory(@Valid @RequestBody CategoryRequestDTO requestDTO) {
+		CategoryResponseDTO responseDTO = categoryService.createCategory(requestDTO);
+		return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+	}
 
-    @GetMapping
-    public ResponseEntity<List<CategoryResponseDTO>> getAllCategories() {
-        List<CategoryResponseDTO> categories = categoryService.getAllCategories();
-        return ResponseEntity.ok(categories);
-    }
+	@GetMapping
+	public ResponseEntity<List<CategoryResponseDTO>> getAllCategories() {
+		List<CategoryResponseDTO> categories = categoryService.getAllCategories();
+		return ResponseEntity.ok(categories);
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> getCategoryById(@PathVariable Long id) {
-        CategoryResponseDTO category = categoryService.getCategoryById(id);
-        return ResponseEntity.ok(category);
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<CategoryResponseDTO> getCategoryById(@PathVariable Long id) {
+		CategoryResponseDTO category = categoryService.getCategoryById(id);
+		return ResponseEntity.ok(category);
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable Long id,
-            @Valid @RequestBody CategoryRequestDTO requestDTO) {
-        CategoryResponseDTO updatedCategory = categoryService.updateCategory(id, requestDTO);
-        return ResponseEntity.ok(updatedCategory);
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable Long id,
+			@Valid @RequestBody CategoryRequestDTO requestDTO) {
+		CategoryResponseDTO updatedCategory = categoryService.updateCategory(id, requestDTO);
+		return ResponseEntity.ok(updatedCategory);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+		categoryService.deleteCategory(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

@@ -21,31 +21,29 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/favorites")
 public class FavoriteController {
-	
+
 	private final FavoriteService favoriteService;
 
-    public FavoriteController(FavoriteService favoriteService) {
-        this.favoriteService = favoriteService;
-    }
-    
-    @PostMapping
-    public ResponseEntity<FavoriteResponseDTO> addFavorite(@RequestBody @Valid FavoriteRequestDTO requestDTO) {
-        FavoriteResponseDTO favorite = favoriteService.addFavorite(requestDTO.getUserId(), requestDTO.getPropertyId());
-        return new ResponseEntity<>(favorite, HttpStatus.CREATED);
-    }
+	public FavoriteController(FavoriteService favoriteService) {
+		this.favoriteService = favoriteService;
+	}
 
+	@PostMapping
+	public ResponseEntity<FavoriteResponseDTO> addFavorite(@RequestBody @Valid FavoriteRequestDTO requestDTO) {
+		FavoriteResponseDTO favorite = favoriteService.addFavorite(requestDTO.getUserId(), requestDTO.getPropertyId());
+		return new ResponseEntity<>(favorite, HttpStatus.CREATED);
+	}
 
+	@GetMapping("/{userId}")
+	public ResponseEntity<List<FavoriteResponseDTO>> getFavoritesByUser(@PathVariable Long userId) {
+		List<FavoriteResponseDTO> favorites = favoriteService.getFavoritesByUser(userId);
+		return ResponseEntity.ok(favorites);
+	}
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<FavoriteResponseDTO>> getFavoritesByUser(@PathVariable Long userId) {
-        List<FavoriteResponseDTO> favorites = favoriteService.getFavoritesByUser(userId);
-        return ResponseEntity.ok(favorites);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFavorite(@PathVariable Long id) {
-        favoriteService.deleteFavorite(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteFavorite(@PathVariable Long id) {
+		favoriteService.deleteFavorite(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

@@ -21,29 +21,29 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {
-	
+
 	private final ImageService imageService;
 
-    public ImageController(ImageService imageService) {
-        this.imageService = imageService;
-    }
+	public ImageController(ImageService imageService) {
+		this.imageService = imageService;
+	}
 
-    @PostMapping
-    public ResponseEntity<ImageResponseDTO> addImage(@Valid @RequestBody ImageRequestDTO requestDTO) {
-        ImageResponseDTO response = imageService.addImage(requestDTO);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity<ImageResponseDTO> addImage(@Valid @RequestBody ImageRequestDTO requestDTO) {
+		ImageResponseDTO response = imageService.addImage(requestDTO);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
 
-    @GetMapping("/property/{propertyId}")
-    public ResponseEntity<List<ImageResponseDTO>> getImagesByProperty(@PathVariable Long propertyId) {
-        List<ImageResponseDTO> images = imageService.getImagesByPropertyId(propertyId);
-        return ResponseEntity.ok(images);
-    }
+	@GetMapping("/property/{propertyId}")
+	public ResponseEntity<List<ImageResponseDTO>> getImagesByProperty(@PathVariable Long propertyId) {
+		List<ImageResponseDTO> images = imageService.getImagesByPropertyId(propertyId);
+		return ResponseEntity.ok(images);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
-        imageService.deleteImage(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
+		imageService.deleteImage(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

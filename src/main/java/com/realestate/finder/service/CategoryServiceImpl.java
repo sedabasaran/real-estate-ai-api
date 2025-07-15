@@ -16,48 +16,45 @@ import com.realestate.finder.repository.CategoryRepository;
 public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryRepository categoryRepository;
-    private final CategoryMapper categoryMapper;
+	private final CategoryMapper categoryMapper;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
-        this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
-    }
+	public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+		this.categoryRepository = categoryRepository;
+		this.categoryMapper = categoryMapper;
+	}
 
-    @Override
-    public CategoryResponseDTO createCategory(CategoryRequestDTO categoryRequestDTO) {
-        Category category = categoryMapper.toEntity(categoryRequestDTO);
-        Category savedCategory = categoryRepository.save(category);
-        return categoryMapper.toResponseDTO(savedCategory);
-    }
+	@Override
+	public CategoryResponseDTO createCategory(CategoryRequestDTO categoryRequestDTO) {
+		Category category = categoryMapper.toEntity(categoryRequestDTO);
+		Category savedCategory = categoryRepository.save(category);
+		return categoryMapper.toResponseDTO(savedCategory);
+	}
 
-    @Override
-    public List<CategoryResponseDTO> getAllCategories() {
-        return categoryRepository.findAll()
-                .stream()
-                .map(categoryMapper::toResponseDTO)
-                .collect(Collectors.toList());
-    }
+	@Override
+	public List<CategoryResponseDTO> getAllCategories() {
+		return categoryRepository.findAll().stream().map(categoryMapper::toResponseDTO).collect(Collectors.toList());
+	}
 
-    @Override
-    public CategoryResponseDTO getCategoryById(Long id) {
-        Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
-        return categoryMapper.toResponseDTO(category);
-    }
+	@Override
+	public CategoryResponseDTO getCategoryById(Long id) {
+		Category category = categoryRepository.findById(id)
+				.orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
+		return categoryMapper.toResponseDTO(category);
+	}
 
-    @Override
-    public void deleteCategory(Long id) {
-        Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
-        categoryRepository.delete(category);
-    }
+	@Override
+	public void deleteCategory(Long id) {
+		Category category = categoryRepository.findById(id)
+				.orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
+		categoryRepository.delete(category);
+	}
 
-    @Override
-    public CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO categoryRequestDTO) {
-        Category existingCategory = categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
-        existingCategory.setName(categoryRequestDTO.getName());
-        Category updated = categoryRepository.save(existingCategory);
-        return categoryMapper.toResponseDTO(updated);
-    }
+	@Override
+	public CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO categoryRequestDTO) {
+		Category existingCategory = categoryRepository.findById(id)
+				.orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + id));
+		existingCategory.setName(categoryRequestDTO.getName());
+		Category updated = categoryRepository.save(existingCategory);
+		return categoryMapper.toResponseDTO(updated);
+	}
 }

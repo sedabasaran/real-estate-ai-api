@@ -1,18 +1,17 @@
 package com.realestate.finder.entity;
 
 public enum ListingType {
-	
-    FOR_SALE("Satılık"),
-    FOR_RENT("Kiralık");
 
-    private final String displayName;
+	FOR_SALE("Satılık"), FOR_RENT("Kiralık");
 
-    ListingType(String displayName) {
-        this.displayName = displayName;
-    }
+	private final String displayName;
 
-    public String getDisplayName() {
-        return displayName;
-    }
+	ListingType(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
 
 }

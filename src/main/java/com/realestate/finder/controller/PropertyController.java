@@ -2,7 +2,6 @@ package com.realestate.finder.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.realestate.finder.dto.request.PropertyFilterRequest;
 import com.realestate.finder.dto.request.PropertyRequestDTO;
 import com.realestate.finder.dto.response.PropertyResponseDTO;
 import com.realestate.finder.entity.User;
@@ -74,4 +74,12 @@ public class PropertyController {
 		propertyService.deleteProperty(id);
 		return ResponseEntity.noContent().build();
 	}
+
+	
+	@PostMapping("/filter") 
+	public ResponseEntity<List<PropertyResponseDTO>> filterProperties(@RequestBody PropertyFilterRequest filter) {
+	    return ResponseEntity.ok(propertyService.filterProperties(filter));
+	}
+
+
 }

@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.realestate.finder.dto.request.PropertyFilterRequest;
+import com.realestate.finder.specification.PropertySpecification;
 import com.realestate.finder.dto.request.PropertyRequestDTO;
 import com.realestate.finder.dto.response.PropertyResponseDTO;
 import com.realestate.finder.entity.Category;
@@ -105,5 +108,17 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public void deleteProperty(Long id) {
 		propertyRepository.deleteById(id);
+	}
+
+
+	@Override
+	public List<PropertyResponseDTO> filterProperties(PropertyFilterRequest filterRequest) {
+		Specification<Property> spec = PropertySpecification.filterBy(filterRequest);
+
+		return propertyRepository.findAll(spec).stream()
+				.map(p -> new PropertyResponseDTO(p.getId(), p.getTitle(), p.getDescription(), p.getPrice(),
+						p.getCity(), p.getDistrict(), p.getRoomCount(), p.getSquareMeters(), p.getCreatedAt(), null,
+						p.getCategory().getName(), p.getListingType()))
+				.collect(Collectors.toList());
 	}
 }

@@ -2,6 +2,7 @@ package com.realestate.finder.service;
 
 import java.util.List;
 
+import com.realestate.finder.dto.request.PropertyFilterRequest;
 import com.realestate.finder.dto.request.PropertyRequestDTO;
 import com.realestate.finder.dto.response.PropertyResponseDTO;
 import com.realestate.finder.entity.User;
@@ -17,5 +18,10 @@ public interface PropertyService {
 	PropertyResponseDTO updateProperty(Long id, PropertyRequestDTO propertyRequestDTO);
 
 	void deleteProperty(Long id);
+
+	void deleteProperty(Long id);
+	
+	List<PropertyResponseDTO> filterProperties(PropertyFilterRequest filterRequest);
+
 
 }

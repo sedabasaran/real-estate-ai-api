@@ -14,4 +14,4 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Run the compiled JAR
-CMD ["java", "-jar", "target/real-estate-ai-api-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "finder-0.0.1-SNAPSHOT.jar"]

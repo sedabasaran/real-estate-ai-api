@@ -18,8 +18,6 @@ public interface PropertyService {
 	PropertyResponseDTO updateProperty(Long id, PropertyRequestDTO propertyRequestDTO);
 
 	void deleteProperty(Long id);
-
-	void deleteProperty(Long id);
 	
 	List<PropertyResponseDTO> filterProperties(PropertyFilterRequest filterRequest);
 

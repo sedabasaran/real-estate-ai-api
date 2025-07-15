@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.realestate.finder.entity.Property;
 
 @Repository
-public interface PropertyRepository extends JpaRepository<Property, Long> {
-
 public interface PropertyRepository extends JpaRepository<Property, Long>, JpaSpecificationExecutor<Property> {
 }
 

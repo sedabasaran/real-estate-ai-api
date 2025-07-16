@@ -28,6 +28,24 @@ Hugging Face API, Bearer Token ile güvenli şekilde çağrılır.
 Model sonuçları label ve score ile değerlendirilir.
 Belirli etiketlerde (toxicity, hate, threat) skor %70 üzerindeyse ilan reddedilir.
 
+📡 Deployment
+Render.com üzerinde canlı
+.env secrets ile yapılandırıldı
+Her git push sonrası otomatik deploy
+Bu kod, veritabanında Türkçe karakter sorunlarını çözmek için normalize edilmiş filtreleme yapıyor. 
+unaccent fonksiyonunu PostgreSQL'de etkinleştirerek kullanıcı "İstanbul" da yazsa "istanbul" da yazsa sonuç dönmesini garanti altına alıyor. 
+Specification kullanarak da sorguları dinamik ve okunabilir tutuyor.
+
+
+🏡 Demo Videosu 
+
+https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
+
+
+## 🔗 Canlı API Linki
+
+👉 https://real-estate-ai-api.onrender.com/
+
 ⚙️ Teknolojiler
 Java 17
 Spring Boot
@@ -42,24 +60,6 @@ PostgreSQL veritabanı kur ve yapılandır
 Projeyi başlat:
 bash
 ./mvnw spring-boot:run
-
-📡 Deployment
-Render.com üzerinde canlı
-.env secrets ile yapılandırıldı
-Her git push sonrası otomatik deploy
-Bu kod, veritabanında Türkçe karakter sorunlarını çözmek için normalize edilmiş filtreleme yapıyor. 
-unaccent fonksiyonunu PostgreSQL'de etkinleştirerek kullanıcı "İstanbul" da yazsa "istanbul" da yazsa sonuç dönmesini garanti altına alıyoruz. 
-Specification kullanarak da sorguları dinamik ve okunabilir tutuyoruz.
-
-
-🏡 Demo Videosu 
-
-https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
-
-
-## 🔗 Canlı API Linki
-
-👉 https://real-estate-ai-api.onrender.com/
 
 📌 Örnek Kullanım
 Giriş / Kayıt

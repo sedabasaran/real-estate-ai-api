@@ -16,7 +16,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.emptyList(); // Roller yoksa boş liste döner
+		return Collections.emptyList(); 
 	}
 
 	@Override

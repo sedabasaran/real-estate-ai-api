@@ -18,7 +18,7 @@ public class CategoryMapper {
     public CategoryResponseDTO toResponseDTO(Category category) {
         CategoryResponseDTO dto = new CategoryResponseDTO();
         dto.setId(category.getId());
-        dto.setName(category.getName().getDisplayName()); // TR isim döner
+        dto.setName(category.getName().getDisplayName()); 
         return dto;
     }
 

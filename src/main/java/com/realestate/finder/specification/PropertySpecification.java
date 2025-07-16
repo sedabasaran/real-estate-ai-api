@@ -56,18 +56,8 @@ public class PropertySpecification {
 	private static String removeTurkish(String input) {
 		input = Normalizer.normalize(input, Normalizer.Form.NFD);
 		input = input.replaceAll("\\p{M}", "");
-		return input.toLowerCase()
-				.replace("ı", "i")
-				.replace("İ", "i")
-				.replace("ğ", "g")
-				.replace("Ğ", "g")
-				.replace("ç", "c")
-				.replace("Ç", "c")
-				.replace("ş", "s")
-				.replace("Ş", "s")
-				.replace("ö", "o")
-				.replace("Ö", "o")
-				.replace("ü", "u")
-				.replace("Ü", "u");
+		return input.toLowerCase().replace("ı", "i").replace("İ", "i").replace("ğ", "g").replace("Ğ", "g")
+				.replace("ç", "c").replace("Ç", "c").replace("ş", "s").replace("Ş", "s").replace("ö", "o")
+				.replace("Ö", "o").replace("ü", "u").replace("Ü", "u");
 	}
 }

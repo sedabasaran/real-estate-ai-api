@@ -110,7 +110,6 @@ public class PropertyServiceImpl implements PropertyService {
 		propertyRepository.deleteById(id);
 	}
 
-
 	@Override
 	public List<PropertyResponseDTO> filterProperties(PropertyFilterRequest filterRequest) {
 		Specification<Property> spec = PropertySpecification.filterBy(filterRequest);

@@ -1,4 +1,4 @@
-## Real Estate Listing API with AI Moderation
+## AI-Powered Real Estate Listing API
 
 Bu proje, Spring Boot ile geliştirilmiş, kullanıcıların emlak ilanları oluşturabildiği,filtreleyebildiği ve yönetebildiği bir RESTful API'dir. 
 Hugging Face API ile başlık ve açıklama kontrolü sağlanmaktadır. Proje JWT ile güvenlidir ve canlı olarak Render.com üzerinde yayındadır.

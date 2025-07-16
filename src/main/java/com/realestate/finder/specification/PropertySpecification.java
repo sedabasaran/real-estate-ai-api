@@ -4,6 +4,7 @@ import com.realestate.finder.dto.request.PropertyFilterRequest;
 import com.realestate.finder.entity.Property;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
+import java.text.Normalizer;
 
 public class PropertySpecification {
 
@@ -45,7 +46,7 @@ public class PropertySpecification {
 	private static Predicate applyStringFilter(Predicate predicate, jakarta.persistence.criteria.CriteriaBuilder cb,
 			jakarta.persistence.criteria.Path<String> path, String value) {
 		if (value != null && !value.isBlank()) {
-			String normalized = removeTurkish(value.toLowerCase());
+			String normalized = removeTurkish(value);
 			return cb.and(predicate,
 					cb.like(cb.lower(cb.function("unaccent", String.class, path)), "%" + normalized + "%"));
 		}
@@ -53,7 +54,20 @@ public class PropertySpecification {
 	}
 
 	private static String removeTurkish(String input) {
-		return input.toLowerCase().replace("ç", "c").replace("ğ", "g").replace("ı", "i").replace("ö", "o")
-				.replace("ş", "s").replace("ü", "u");
+		input = Normalizer.normalize(input, Normalizer.Form.NFD);
+		input = input.replaceAll("\\p{M}", "");
+		return input.toLowerCase()
+				.replace("ı", "i")
+				.replace("İ", "i")
+				.replace("ğ", "g")
+				.replace("Ğ", "g")
+				.replace("ç", "c")
+				.replace("Ç", "c")
+				.replace("ş", "s")
+				.replace("Ş", "s")
+				.replace("ö", "o")
+				.replace("Ö", "o")
+				.replace("ü", "u")
+				.replace("Ü", "u");
 	}
 }

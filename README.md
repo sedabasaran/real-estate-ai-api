@@ -18,6 +18,48 @@ Canlı API Linki:
 - 🔒 JWT tabanlı kimlik doğrulama
 - 📦 PostgreSQL veritabanı
 
+🧠 İçerik Kontrolü (AI Destekli)
+İlan açıklamaları, Hugging Face’in unitary/unbiased-toxic-roberta modeli ile otomatik olarak denetlenir. Bu sayede:
+✅ Uygunsuz, toksik, nefret söylemi içeren ilanlar yayınlanmadan engellenir.
+✅ Dolandırıcılık ihtimali olan ilanlar da anahtar kelime kontrolü ile tespit edilir.
+
+🔐 Güvenlik & Doğrulama
+Hugging Face API, Bearer Token ile güvenli şekilde çağrılır.
+Model sonuçları label ve score ile değerlendirilir.
+Belirli etiketlerde (toxicity, hate, threat) skor %70 üzerindeyse ilan reddedilir.
+
+⚙️ Teknolojiler
+Java 17
+Spring Boot
+Spring Security (JWT)
+PostgreSQL
+Hugging Face API
+Render.com (Deployment)
+
+🛠️ Nasıl Çalıştırılır?
+PostgreSQL veritabanı kur ve yapılandır
+.env dosyasına Hugging Face API key ve DB bilgilerini ekle
+Projeyi başlat:
+bash
+./mvnw spring-boot:run
+
+📡 Deployment
+Render.com üzerinde canlı
+.env secrets ile yapılandırıldı
+Her git push sonrası otomatik deploy
+Bu kod, veritabanında Türkçe karakter sorunlarını çözmek için normalize edilmiş filtreleme yapıyor. 
+unaccent fonksiyonunu PostgreSQL'de etkinleştirerek kullanıcı "İstanbul" da yazsa "istanbul" da yazsa sonuç dönmesini garanti altına alıyoruz. 
+Specification kullanarak da sorguları dinamik ve okunabilir tutuyoruz.
+
+
+🏡 Demo Videosu 
+
+https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
+
+
+## 🔗 Canlı API Linki
+
+👉 https://real-estate-ai-api.onrender.com/
 
 📌 Örnek Kullanım
 Giriş / Kayıt
@@ -75,15 +117,6 @@ json
   "base64": "data:image/png;base64,iVBORw0KGgoAAAANS..."
 }
 
-🧠 İçerik Kontrolü (AI Destekli)
-İlan açıklamaları, Hugging Face’in unitary/unbiased-toxic-roberta modeli ile otomatik olarak denetlenir. Bu sayede:
-✅ Uygunsuz, toksik, nefret söylemi içeren ilanlar yayınlanmadan engellenir.
-✅ Dolandırıcılık ihtimali olan ilanlar da anahtar kelime kontrolü ile tespit edilir.
-
-🔐 Güvenlik & Doğrulama
-Hugging Face API, Bearer Token ile güvenli şekilde çağrılır.
-Model sonuçları label ve score ile değerlendirilir.
-Belirli etiketlerde (toxicity, hate, threat) skor %70 üzerindeyse ilan reddedilir.
 🚫 Örnek Engellenecek Açıklama:
 json
 {
@@ -93,43 +126,5 @@ json
 🧪 Kullanılan Model:
 unitary/unbiased-toxic-roberta 🔗 https://huggingface.co/unitary/unbiased-toxic-roberta
 
-⚙️ Teknolojiler
-Java 17
-Spring Boot
-Spring Security (JWT)
-PostgreSQL
-Hugging Face API
-Render.com (Deployment)
 
-
-🛠️ Nasıl Çalıştırılır?
-PostgreSQL veritabanı kur ve yapılandır
-.env dosyasına Hugging Face API key ve DB bilgilerini ekle
-Projeyi başlat:
-bash
-./mvnw spring-boot:run
-
-📡 Deployment
-Render.com üzerinde canlı
-.env secrets ile yapılandırıldı
-Her git push sonrası otomatik deploy
-Bu kod, veritabanında Türkçe karakter sorunlarını çözmek için normalize edilmiş filtreleme yapıyor. 
-unaccent fonksiyonunu PostgreSQL'de etkinleştirerek kullanıcı "İstanbul" da yazsa "istanbul" da yazsa sonuç dönmesini garanti altına alıyoruz. 
-Specification kullanarak da sorguları dinamik ve okunabilir tutuyoruz.
-
-🏡 Real Estate Listing API with AI Control
-
-Bu proje, Spring Boot kullanılarak geliştirilmiş bir emlak ilan uygulamasıdır. 
-Kullanıcılar ilan oluşturabilir, filtreleyebilir, favorilere ekleyebilir ve içerik kontrolü Hugging Face API ile sağlanır. 
-JWT ile güvenlidir ve canlı olarak Render.com üzerinde yayındadır.
-
-🏡 Demo Videosu 
-
-https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
-
-
-
-## 🔗 Canlı API Linki
-
-👉 https://real-estate-ai-api.onrender.com/
 

@@ -39,6 +39,7 @@ http
 KopyalaDüzenle
 Headers: Authorization: Bearer <JWT>
 json
+--
 {
   "title": "Geniş ve Ferah Daire",
   "description": "Merkezi konumda, huzurlu bir yaşam.",
@@ -54,7 +55,7 @@ json
 🔍 İlan Filtreleme
 POST /api/properties/filter
 json
-KopyalaDüzenle
+--
 {
   "city": "İstanbul",
   "minPrice": 1000000,
@@ -68,7 +69,7 @@ http
 KopyalaDüzenle
 Headers: Authorization: Bearer <JWT>
 json
-KopyalaDüzenle
+--
 {
   "base64": "data:image/png;base64,iVBORw0KGgoAAAANS..."
 }
@@ -122,6 +123,9 @@ Kullanıcılar ilan oluşturabilir, filtreleyebilir, favorilere ekleyebilir ve i
 JWT ile güvenlidir ve canlı olarak Render.com üzerinde yayındadır.
 
 🏡 Demo Videosu 
+
+https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
+
 
 
 ## 🔗 Canlı API Linki

@@ -1,15 +1,10 @@
 ## AI-Powered Real Estate Listing API
 
-##  Mevcut Diller / Available Languages
-[🇹🇷 Türkçe](#türkçe) | [🇬🇧 English](#english)
-
----
-
 Bu proje, Spring Boot ile geliştirilmiş, kullanıcıların emlak ilanları oluşturabildiği,filtreleyebildiği ve yönetebildiği bir RESTful API'dir. 
 Hugging Face modelleri ile ilan içeriklerini analiz ederek **toksik, spam veya dolandırıcılık içeren içerikleri otomatik olarak engeller**.
 Proje JWT ile güvenlidir ve canlı olarak Render.com üzerinde yayındadır. 
 
-## Canlı API Linki:
+Canlı API Linki:
 https://real-estate-ai-api.onrender.com
 
 ## Özellikler

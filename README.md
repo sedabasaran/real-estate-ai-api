@@ -126,5 +126,133 @@ json
 } Kullanılan Model:
 unitary/unbiased-toxic-roberta 🔗 https://huggingface.co/unitary/unbiased-toxic-roberta
 
+## AI-Powered Real Estate Listing API
+
+This project is a RESTful API built with Spring Boot that allows users to create, filter, and manage real estate listings. It integrates Hugging Face models to analyze listing content and automatically block toxic, spam, or fraudulent entries. The API is secured with JWT authentication and is live on Render.com.
+
+## Live API:
+https://real-estate-ai-api.onrender.com
+
+## Features
+User registration & login (JWT Authentication)
+Create, update, delete, and list real estate listings
+Advanced filtering by:
+City
+Price range
+Room count
+Square meters
+Category & listing type
+Image upload using Base64
+Category creation and listing
+Favorite listings system
+AI-powered content moderation (Hugging Face)
+JWT-based security
+PostgreSQL database
+
+## AI Content Moderation
+
+Listing descriptions are automatically analyzed using the unitary/unbiased-toxic-roberta model from Hugging Face.
+
+This ensures:
+
+Toxic, offensive, or hate speech content is blocked
+Potential scam listings are detected via keyword analysis
+Moderation Logic
+The Hugging Face API is called securely using a Bearer Token
+Model outputs include labels and confidence scores
+Listings are rejected if scores exceed 70% for:
+Toxicity
+Hate
+Threat
+
+## Security & Authentication
+JWT-based authentication system
+Secure Hugging Face API integration via Bearer Token
+Protected endpoints for authorized users only
+
+## Deployment
+Deployed on Render.com
+Environment variables managed via .env
+Automatic deployment on every Git push
+Additional Notes
+PostgreSQL unaccent function is enabled to handle Turkish characters
+(e.g., "İstanbul" and "istanbul" return the same results)
+Dynamic and readable queries are implemented using Spring Specifications
+
+## Demo
+
+demo-real-estate-api.mp4
+
+## Technologies Used
+Java 17
+Spring Boot
+Spring Security (JWT)
+PostgreSQL
+Hugging Face API
+Render.com (Deployment)
+⚙️ Getting Started
+Set up and configure PostgreSQL
+Add your Hugging Face API key and database credentials to .env
+Run the project:
+./mvnw spring-boot:run
+
+Example Usage
+Authentication
+
+Register
+
+POST /api/auth/register
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+Login
+
+POST /api/auth/authenticate
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+Create Listing
+POST /api/properties
+Headers: Authorization: Bearer <TOKEN>
+
+{
+  "title": "Spacious and Bright Apartment",
+  "description": "Peaceful living in a central location.",
+  "city": "Istanbul",
+  "district": "Kadikoy",
+  "price": 2500000,
+  "roomCount": 3,
+  "squareMeters": 120,
+  "categoryId": 1,
+  "listingType": "SALE"
+}
+Filter Listings
+POST /api/properties/filter
+{
+  "city": "Istanbul",
+  "minPrice": 1000000,
+  "maxPrice": 5000000,
+  "roomCount": 3
+}
+
+Upload Image
+POST /api/images/upload/{propertyId}
+Headers: Authorization: Bearer <TOKEN>
+
+{
+  "base64": "data:image/png;base64,iVBORw0KGgoAAAANS..."
+}
+Example of Blocked Content
+{
+  "title": "Unmissable Investment Opportunity!",
+  "description": "Luxury villa for only 500,000 TL today! Contact via WhatsApp immediately, details are hidden. Title deed will be provided later."
+}
+## Model Used
+
+ https://huggingface.co/unitary/unbiased-toxic-roberta
+
 
 

@@ -29,6 +29,29 @@ Hugging Face API, Bearer Token ile güvenli şekilde çağrılır.
 Model sonuçları label ve score ile değerlendirilir.
 Belirli etiketlerde (toxicity, hate, threat) skor %70 üzerindeyse ilan reddedilir.
 
+## Test 
+Proje kapsamında, Spring Boot Test ve JUnit 5 kullanılarak kritik repository bileşenleri için entegrasyon testleri yazılmıştır.
+
+## UserRepository Testleri
+Kullanıcı kayıt işleminin doğrulanması
+E-posta adresine göre kullanıcı sorgulama işlemleri
+Aynı e-posta adresi ile tekrar kayıt oluşturulmasının engellenmesi (unique constraint testi)
+Veritabanında bulunmayan kullanıcılar için boş sonuç dönülmesinin doğrulanması
+
+## CategoryRepository Testleri
+Kategori kayıt işleminin doğrulanması
+Aynı kategori türünün tekrar eklenmesinin engellenmesi (unique constraint testi)
+Kategori listeleme ve sorgulama işlemlerinin doğrulanması
+Kullanılan Teknolojiler
+JUnit 5
+Spring Boot Test
+AssertJ
+PostgreSQL
+Transactional Test Desteği
+
+## Not: 
+Render dağıtımı ve Hugging Face API entegrasyonu gibi bazı harici servisler, ücretsiz kullanım kotasının sona ermesi nedeniyle şu anda aktif değildir. Buna rağmen repository katmanındaki entegrasyon testleri, veritabanı işlemlerinin ve veri bütünlüğünün bağımsız olarak doğrulanmasını sağlamaktadır.
+
 ## Deployment
 Render.com üzerinde canlı
 .env secrets ile yapılandırıldı
@@ -37,11 +60,9 @@ Bu kod, veritabanında Türkçe karakter sorunlarını çözmek için normalize 
 unaccent fonksiyonunu PostgreSQL'de etkinleştirerek kullanıcı "İstanbul" da yazsa "istanbul" da yazsa sonuç dönmesini garanti altına alıyor. 
 Specification kullanarak da sorguları dinamik ve okunabilir tutuyor.
 
-
 ## Demo Videosu 
 
 https://github.com/user-attachments/assets/d18b9007-9ad2-4920-8197-475e2cbbca80
-
 
 ## Canlı API Linki
 
@@ -179,6 +200,27 @@ PostgreSQL unaccent function is enabled to handle Turkish characters
 (e.g., "İstanbul" and "istanbul" return the same results)
 Dynamic and readable queries are implemented using Spring Specifications
 
+Testing
+
+The project includes integration tests for critical repository components using Spring Boot Test and JUnit 5.
+
+UserRepository Tests
+User persistence validation
+Email-based lookup operations
+Duplicate email constraint verification
+Non-existing user search scenarios
+CategoryRepository Tests
+Category persistence validation
+Unique category constraint verification
+Category retrieval operations
+Technologies Used
+JUnit 5
+Spring Boot Test
+AssertJ
+PostgreSQL
+Transactional Test Support
+
+Note: Some external integrations (Render deployment and Hugging Face API services) are currently disabled because the free-tier API quota has expired. Repository-layer tests remain available for validating database functionality independently.
 
 ## Technologies Used
 Java 17

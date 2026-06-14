@@ -1,11 +1,9 @@
 # AI-Powered Real Estate Listing API
 
-🌐 Language / Dil
+🌐 Dil  / Language 
 
-🇹🇷 [Türkçe](#turkce)
+🇹🇷 [Türkçe](#turkce) / 🇺🇸 [English](#english)
    
-🇺🇸 [English](#english)
-
 <a id="turkce"></a>
 
 # Türkçe

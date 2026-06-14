@@ -3,7 +3,8 @@
 🌐 Language / Dil
 
 🇹🇷 [Türkçe](#turkce)
-   [English](#english)
+   
+🇺🇸 [English](#english)
 
 <a id="turkce"></a>
 

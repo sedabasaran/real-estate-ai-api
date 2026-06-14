@@ -200,16 +200,16 @@ PostgreSQL unaccent function is enabled to handle Turkish characters
 (e.g., "İstanbul" and "istanbul" return the same results)
 Dynamic and readable queries are implemented using Spring Specifications
 
-Testing
-
+## Testing
 The project includes integration tests for critical repository components using Spring Boot Test and JUnit 5.
 
-UserRepository Tests
+## UserRepository Tests
 User persistence validation
 Email-based lookup operations
 Duplicate email constraint verification
 Non-existing user search scenarios
-CategoryRepository Tests
+
+## CategoryRepository Tests
 Category persistence validation
 Unique category constraint verification
 Category retrieval operations
@@ -220,7 +220,8 @@ AssertJ
 PostgreSQL
 Transactional Test Support
 
-Note: Some external integrations (Render deployment and Hugging Face API services) are currently disabled because the free-tier API quota has expired. Repository-layer tests remain available for validating database functionality independently.
+## Note: 
+Some external integrations (Render deployment and Hugging Face API services) are currently disabled because the free-tier API quota has expired. Repository-layer tests remain available for validating database functionality independently.
 
 ## Technologies Used
 Java 17

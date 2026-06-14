@@ -1,3 +1,14 @@
+# AI-Powered Real Estate Listing API
+
+🌐 Language / Dil
+
+🇹🇷 [Türkçe](#turkce)
+   [English](#english)
+
+<a id="turkce"></a>
+
+# Türkçe
+
 ## AI-Powered Real Estate Listing API
 
 Bu proje, Spring Boot ile geliştirilmiş, kullanıcıların emlak ilanları oluşturabildiği,filtreleyebildiği ve yönetebildiği bir RESTful API'dir. 
@@ -147,6 +158,10 @@ json
 } Kullanılan Model:
 unitary/unbiased-toxic-roberta 🔗 https://huggingface.co/unitary/unbiased-toxic-roberta
 
+<a id="english"></a>
+
+# English
+
 ## AI-Powered Real Estate Listing API
 
 This project is a RESTful API built with Spring Boot that allows users to create, filter, and manage real estate listings. It integrates Hugging Face models to analyze listing content and automatically block toxic, spam, or fraudulent entries. The API is secured with JWT authentication and is live on Render.com.
@@ -294,5 +309,4 @@ Example of Blocked Content
 
  https://huggingface.co/unitary/unbiased-toxic-roberta
 
-
-
+---
